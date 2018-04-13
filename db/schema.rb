@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2) do
+ActiveRecord::Schema.define(version: 20180412200615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,29 @@ ActiveRecord::Schema.define(version: 2) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_examples_on_user_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.text "program", null: false
+    t.date "session_date", null: false
+    t.integer "session_rating", null: false
+    t.text "helm", null: false
+    t.text "crew"
+    t.text "wind_dir"
+    t.integer "wind_strength"
+    t.text "chop"
+    t.text "objective_1", null: false
+    t.text "objective_2"
+    t.text "objective_3"
+    t.text "objective_4"
+    t.text "objective_5"
+    t.text "session_report", null: false
+    t.boolean "boat_maint", null: false
+    t.text "boat_maint_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,4 +57,5 @@ ActiveRecord::Schema.define(version: 2) do
   end
 
   add_foreign_key "examples", "users"
+  add_foreign_key "sessions", "users"
 end

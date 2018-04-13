@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe ProgramsController, type: :controller do
+RSpec.describe SessionsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Program. As you add validations to Program, be sure to
+  # Session. As you add validations to Session, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe ProgramsController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # ProgramsController. Be sure to keep this updated too.
+  # SessionsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      program = Program.create! valid_attributes
+      session = Session.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -51,33 +51,33 @@ RSpec.describe ProgramsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      program = Program.create! valid_attributes
-      get :show, params: {id: program.to_param}, session: valid_session
+      session = Session.create! valid_attributes
+      get :show, params: {id: session.to_param}, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Program" do
+      it "creates a new Session" do
         expect {
-          post :create, params: {program: valid_attributes}, session: valid_session
-        }.to change(Program, :count).by(1)
+          post :create, params: {session: valid_attributes}, session: valid_session
+        }.to change(Session, :count).by(1)
       end
 
-      it "renders a JSON response with the new program" do
+      it "renders a JSON response with the new session" do
 
-        post :create, params: {program: valid_attributes}, session: valid_session
+        post :create, params: {session: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(program_url(Program.last))
+        expect(response.location).to eq(session_url(Session.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new program" do
+      it "renders a JSON response with errors for the new session" do
 
-        post :create, params: {program: invalid_attributes}, session: valid_session
+        post :create, params: {session: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -90,27 +90,27 @@ RSpec.describe ProgramsController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested program" do
-        program = Program.create! valid_attributes
-        put :update, params: {id: program.to_param, program: new_attributes}, session: valid_session
-        program.reload
+      it "updates the requested session" do
+        session = Session.create! valid_attributes
+        put :update, params: {id: session.to_param, session: new_attributes}, session: valid_session
+        session.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the program" do
-        program = Program.create! valid_attributes
+      it "renders a JSON response with the session" do
+        session = Session.create! valid_attributes
 
-        put :update, params: {id: program.to_param, program: valid_attributes}, session: valid_session
+        put :update, params: {id: session.to_param, session: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the program" do
-        program = Program.create! valid_attributes
+      it "renders a JSON response with errors for the session" do
+        session = Session.create! valid_attributes
 
-        put :update, params: {id: program.to_param, program: invalid_attributes}, session: valid_session
+        put :update, params: {id: session.to_param, session: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -118,11 +118,11 @@ RSpec.describe ProgramsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested program" do
-      program = Program.create! valid_attributes
+    it "destroys the requested session" do
+      session = Session.create! valid_attributes
       expect {
-        delete :destroy, params: {id: program.to_param}, session: valid_session
-      }.to change(Program, :count).by(-1)
+        delete :destroy, params: {id: session.to_param}, session: valid_session
+      }.to change(Session, :count).by(-1)
     end
   end
 
