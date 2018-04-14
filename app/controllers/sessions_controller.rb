@@ -1,4 +1,4 @@
-class SessionsController < ProtectedController
+class SessionsController < ProtectedController # ProtectedController OpenReadController
   before_action :set_session, only: [:show, :update, :destroy]
 
   # GET /sessions
