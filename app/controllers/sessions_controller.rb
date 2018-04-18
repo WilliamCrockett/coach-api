@@ -4,9 +4,13 @@ class SessionsController < ProtectedController # ProtectedController OpenReadCon
   # GET /sessions
   def index
 
-    @sessions = Session.all
+    if (params[:program])
+      @sessions = Session.where(program: params[:program]).last(5)
+    else
+      @sessions = Session.all
+    end
 
-    render json: @sessions
+      render json: @sessions
   end
 
   # GET /sessions/1
