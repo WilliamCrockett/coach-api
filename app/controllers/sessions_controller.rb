@@ -3,6 +3,7 @@ class SessionsController < ProtectedController # ProtectedController OpenReadCon
 
   # GET /sessions
   def index
+
     @sessions = Session.all
 
     render json: @sessions
