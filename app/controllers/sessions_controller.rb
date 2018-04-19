@@ -5,7 +5,7 @@ class SessionsController < ProtectedController # ProtectedController OpenReadCon
   def index
 
     if (params[:program])
-      @sessions = Session.where(program: params[:program]).last(5)
+      @sessions = Session.where(program: params[:program])
     else
       @sessions = Session.all
     end
